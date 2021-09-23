@@ -1,0 +1,6 @@
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\obj\Debug\LinearAlgebra.csproj.AssemblyReference.cache
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\obj\Debug\LinearAlgebra.csproj.CoreCompileInputs.cache
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\bin\Debug\LinearAlgebra.dll
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\bin\Debug\LinearAlgebra.pdb
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\obj\Debug\LinearAlgebra.dll
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\LinearAlgebra\obj\Debug\LinearAlgebra.pdb

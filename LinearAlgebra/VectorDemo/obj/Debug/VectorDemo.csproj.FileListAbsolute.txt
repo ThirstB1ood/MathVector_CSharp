@@ -1,0 +1,10 @@
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\obj\Debug\VectorDemo.csproj.AssemblyReference.cache
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\obj\Debug\VectorDemo.csproj.CoreCompileInputs.cache
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\bin\Debug\VectorDemo.exe.config
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\bin\Debug\VectorDemo.exe
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\bin\Debug\VectorDemo.pdb
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\bin\Debug\LinearAlgebra.dll
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\bin\Debug\LinearAlgebra.pdb
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\obj\Debug\VectorDemo.csproj.CopyComplete
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\obj\Debug\VectorDemo.exe
+C:\Users\vdv30\source\repos\MathVector_CSharp\LinearAlgebra\VectorDemo\obj\Debug\VectorDemo.pdb
