@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMathVector.cs" />
     <Compile Include="MathVector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

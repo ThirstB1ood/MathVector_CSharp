@@ -54,6 +54,10 @@
       <Project>{45a6157c-1890-456f-af23-cfbda2b960b5}</Project>
       <Name>LinearAlgebra</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MathVectorTests\MathVectorTests.csproj">
+      <Project>{9444056a-3e21-4fe6-8513-dc06d127f111}</Project>
+      <Name>MathVectorTests</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
