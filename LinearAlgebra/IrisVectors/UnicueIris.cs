@@ -9,9 +9,12 @@ namespace ChartsVisualisation
 {
     class UnicueIris
     {
-        List<MathVector> irisesSetosa = new List<MathVector>();
-        List<MathVector> irisesVersicolor = new List<MathVector>();
-        List<MathVector> irisesVirginica = new List<MathVector>();
+        private List<MathVector> irisesSetosa = new List<MathVector>();
+        private List<MathVector> irisesVersicolor = new List<MathVector>();
+        private List<MathVector> irisesVirginica = new List<MathVector>();
+        public MathVector averageSetosa { get; set; }
+        public MathVector averageVersicolor { get; set; }
+        public MathVector averageVirginica { get; set; }
 
         public void DivideIrises(string[] arrayString)
         {
@@ -35,6 +38,25 @@ namespace ChartsVisualisation
                         irisesVirginica.Add(vector);
                 }
             }
+            averageSetosa = CreateMathVectors(irisesSetosa);
+            averageVersicolor = CreateMathVectors(irisesVersicolor);
+            averageVirginica = CreateMathVectors(irisesVirginica);
+            int b = 3;
+        }
+
+        public MathVector CreateMathVectors(List<MathVector> vectorsIrises)
+        {
+            double[] temp = new double[vectorsIrises[0].Dimensions];
+            double res = 0;
+            for(int i = 0; i < vectorsIrises[0].Dimensions; i++)
+            {
+                for(int j = 0; j < vectorsIrises.Count; j++)
+                {
+                    res += vectorsIrises[j][i];
+                }
+                temp[i] = Math.Round(res, 2) / vectorsIrises.Count;
+            }
+            return new MathVector(temp);
         }
     }
 }

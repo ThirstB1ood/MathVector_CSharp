@@ -45,10 +45,6 @@ namespace ChartsVisualisation
             series.Points.Add(5);
             Series series1 = this.chart1.Series.Add("ghbd");
             series1.Points.Add(4);
-            PaintEventHandler paintEventHandler = new PaintEventHandler(sender, e);
-            chart1.Paint += paintEventHandler;
-
-
         }
     }
 }
