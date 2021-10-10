@@ -40,7 +40,9 @@ namespace VectorDemo
             mathTest.TestDivide_3();
             mathTest.TestDivideNumberZero();
             mathTest.TestScalar_2();*/
-            mathTest.TestCalcDistance_2();
+            mathTest.TestOperatorMinusVector();
+            mathTest.TestOperatorDivideVector();
+            mathTest.TestOperatorScalar();
         }
     }
 }

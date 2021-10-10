@@ -19,7 +19,7 @@ namespace LinearAlgebra
 			points = new double[newPoints.Length]; 
 			for(int i = 0; i < newPoints.Length; i++)
             {
-				this.points[i] = newPoints[i];
+				points[i] = newPoints[i];
             }
         }
 
@@ -43,7 +43,7 @@ namespace LinearAlgebra
         {
             get
 			{
-				return this.points.Length;
+				return points.Length;
             }
         }
 
@@ -56,7 +56,7 @@ namespace LinearAlgebra
 		{
             get
             {
-				if ( i >= this.Dimensions || i < 0)
+				if ( i >= Dimensions || i < 0)
 				{
 					throw new Exception("outside vector");
 				}
@@ -64,7 +64,7 @@ namespace LinearAlgebra
             }
             set
 			{
-				if (i >= this.Dimensions || i < 0)
+				if (i >= Dimensions || i < 0)
 				{
 					throw new Exception("outside vector");
 				}
@@ -80,7 +80,7 @@ namespace LinearAlgebra
 		get
             {
 				double length = 0;
-				foreach(double point in this.points)
+				foreach(double point in points)
                 {
 					length += Math.Pow(point, 2);
                 }
@@ -100,7 +100,7 @@ namespace LinearAlgebra
 				throw new Exception("empty vector");
 			}
 			var newPoints = new double [Dimensions];
-			for(int i = 0; i < this.Dimensions; i++)
+			for(int i = 0; i < Dimensions; i++)
             {
 				newPoints[i] = points[i] + number;
             }
@@ -119,7 +119,7 @@ namespace LinearAlgebra
 				throw new Exception("empty vector");
 			}
 			var newPoints = new double[Dimensions];
-			for (int i = 0; i < this.Dimensions; i++)
+			for (int i = 0; i < Dimensions; i++)
 			{
 				newPoints[i] = points[i] * number;
 			}
@@ -138,7 +138,7 @@ namespace LinearAlgebra
 				throw new Exception("different lengths");
 			}
 			var newPoints = new double[Dimensions];
-			for(int i = 0; i < this.Dimensions; i++)
+			for(int i = 0; i < Dimensions; i++)
             {
 				newPoints[i] = this.points[i] + vector[i];
             }
@@ -157,9 +157,9 @@ namespace LinearAlgebra
 				throw new Exception("different lengths");
 			}
 			var newPoints = new double[Dimensions];
-			for (int i = 0; i < this.Dimensions; i++)
+			for (int i = 0; i < Dimensions; i++)
 			{
-				newPoints[i] = this.points[i] * vector[i];
+				newPoints[i] = points[i] * vector[i];
 			}
 			return new MathVector(newPoints);
 		}
@@ -176,9 +176,9 @@ namespace LinearAlgebra
 				throw new Exception("different lengths");
 			}
 			var newPoints = new double[Dimensions];
-			for (int i = 0; i < this.Dimensions; i++)
+			for (int i = 0; i < Dimensions; i++)
 			{
-				newPoints[i] = this.points[i] / vector[i];
+				newPoints[i] = points[i] / vector[i];
 				if (vector[i] == 0)
 				{
 					throw new Exception("divide By Zero");
@@ -199,9 +199,9 @@ namespace LinearAlgebra
 			{
 				throw new Exception("empty vector");
 			}
-			for (int i = 0; i < this.Dimensions; i++)
+			for (int i = 0; i < Dimensions; i++)
 			{
-				newPoints[i] = this.points[i] / number;
+				newPoints[i] = points[i] / number;
 			}
 			if (number == 0)
 			{
@@ -222,9 +222,9 @@ namespace LinearAlgebra
 				throw new Exception("different lengths");
 			}
 			double result = 0;
-			for(int i = 0; i < this.Dimensions; i++)
+			for(int i = 0; i <  Dimensions; i++)
             {
-				result += vector[i] * this.points[i];
+				result += vector[i] * points[i];
             }
 			return result;
         }
@@ -241,9 +241,9 @@ namespace LinearAlgebra
 				throw new Exception("different lengths");
 			}
 			double result = 0;
-			for (int i = 0; i < this.Dimensions; i++)
+			for (int i = 0; i < Dimensions; i++)
 			{
-				result += Math.Pow(vector[i] - this.points[i], 2);
+                result += Math.Pow(vector[i] - points[i], 2);
 			}
 			return Math.Sqrt(result);
 		}
