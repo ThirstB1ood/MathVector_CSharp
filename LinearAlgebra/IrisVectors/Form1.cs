@@ -44,22 +44,6 @@ namespace ChartsVisualisation
                     "не то",
                     "Сообщение");
             }
-
-
-            /*chart1.BackColor = Color.Gray;
-            Series series = this.chart1.Series.Add("ghbdtn");
-            this.chart1.Palette = ChartColorPalette.EarthTones;
-            Axis ax = new Axis();
-            ax.Title = "Частота";
-            chart1.ChartAreas[0].AxisX = ax;
-            Axis ay = new Axis();
-            ay.Title = "Вольт";
-            chart1.ChartAreas[0].AxisY = ay;
-            series.Points.Add(3);
-            series.Points.Add(5);
-            Series series1 = this.chart1.Series.Add("ghbd");
-            series1.Points.Add(4);*/
-
         }
 
         private void paintPie()
