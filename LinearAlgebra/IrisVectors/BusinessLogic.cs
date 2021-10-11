@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using LinearAlgebra;
 
 namespace ChartsVisualisation
 {
-    class BusinessLogic: UnicueIris
+    class BusinessLogic
     {
         private string fileName;
         private string[] arrayStrings;
@@ -29,7 +30,53 @@ namespace ChartsVisualisation
                 throw new FileNotFoundException();
 
             arrayStrings = File.ReadAllLines(fileName);
-             irises.DivideIrises(arrayStrings);
+                irises.DivideIrises(arrayStrings);
+        }
+
+        public MathVector GetAverageVector(string name)
+        {
+            MathVector vector = new MathVector(new double[] { 0 });
+            switch (name)
+            {
+                case "Setosa":
+                    vector = new MathVector(irises.averageSetosa);
+                    break;
+                case "Versicolor":
+                    vector = new MathVector(irises.averageVersicolor);
+                    break;
+                case "Virginica":
+                    vector = new MathVector(irises.averageSetosa);
+                    break;
+            }
+            return vector;
+        }
+
+        public MathVector paint1()
+        {
+            return irises.averageVersicolor;
+        }
+
+        public MathVector paint2()
+        {
+            return irises.averageVirginica;
+        }
+
+        public double length(string name)
+        {
+            double length = 0;
+            switch (name) 
+            {
+                case "Setosa and Versicolor":
+                    length = irises.averageSetosa.LengthVector(irises.averageVersicolor);
+                    break;
+                case "Versicolor and Virginica":
+                    length = irises.averageVersicolor.LengthVector(irises.averageVirginica);
+                    break;
+                case "Setosa and Virginica":
+                    length = irises.averageSetosa.LengthVector(irises.averageVirginica);
+                    break;
+            }
+            return length;
         }
     }
 }

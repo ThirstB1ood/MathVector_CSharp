@@ -20,28 +20,34 @@ namespace ChartsVisualisation
         {
             string[][] data;
             data = arrayString.Select(x => x.Split(',')).ToArray();
-            foreach (string[] str in data.Skip(1))
+            if (checkArray(data))
             {
-                double[] temp = new double[4];
-                for (int i = 0; i < 4; i++)
+                foreach (string[] str in data.Skip(1))
                 {
-                    temp[i] = Convert.ToDouble(str[i].Replace('.', ','));
+                    double[] temp = new double[data[0].Length];
+                    for (int i = 0; i < 4; i++)
+                    {
+                        temp[i] = Convert.ToDouble(str[i].Replace('.', ','));
+                    }
+                    if (Array.Exists(temp, element => (temp[3] != 0)))
+                    {
+                        MathVector vector = new MathVector(temp);
+                        if (str[4] == "setosa")
+                            irisesSetosa.Add(vector);
+                        else if (str[4] == "versicolor")
+                            irisesVersicolor.Add(vector);
+                        else if (str[4] == "virginica")
+                            irisesVirginica.Add(vector);
+                    }
                 }
-                if (Array.Exists(temp, element => (temp[3] != 0)))
-                {
-                    MathVector vector = new MathVector(temp);
-                    if (str[4] == "setosa")
-                        irisesSetosa.Add(vector);
-                    else if (str[4] == "versicolor")
-                        irisesVersicolor.Add(vector);
-                    else if (str[4] == "virginica")
-                        irisesVirginica.Add(vector);
-                }
+            }
+            else
+            {
+                throw new Exception("Not Irises");
             }
             averageSetosa = CreateMathVectors(irisesSetosa);
             averageVersicolor = CreateMathVectors(irisesVersicolor);
             averageVirginica = CreateMathVectors(irisesVirginica);
-            int b = 3;
         }
 
         public MathVector CreateMathVectors(List<MathVector> vectorsIrises)
@@ -57,6 +63,23 @@ namespace ChartsVisualisation
                 temp[i] = Math.Round(res, 2) / vectorsIrises.Count;
             }
             return new MathVector(temp);
+        }
+
+        private bool checkArray(string[][] data)
+        {
+            HashSet<string> set = new HashSet<string>();
+            foreach(string[] str in data.Skip(1))
+            {
+                set.Add(str[4]);
+            }
+            if(set.Count == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -88,6 +88,20 @@ namespace LinearAlgebra
             } 
 		}
 
+		public double LengthVector(MathVector vector)
+        {
+			if (this.Dimensions != vector.Dimensions)
+			{
+				throw new Exception("different lengths");
+			}
+			double length = 0;
+			for (int i = 0; i < Dimensions; i++)
+			{
+				length += Math.Pow(points[i] - vector[i], 2);
+			}
+			return Math.Sqrt(length);
+		}
+
 		/// <summary>
 		/// Покомпонентное сложение с числом.
 		/// </summary>
