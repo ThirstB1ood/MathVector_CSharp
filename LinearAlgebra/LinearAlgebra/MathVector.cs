@@ -52,6 +52,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="i">Индекс</param>
 		/// <returns>Значение по индексу</returns>
+		/// <exception cref="Exception">за пределами вектора</exception>
 		public double this[int i]
 		{
             get
@@ -77,7 +78,7 @@ namespace LinearAlgebra
 		/// </summary>
 		public double Length 
 		{
-		get
+			get
             {
 				double length = 0;
 				foreach(double point in points)
@@ -88,25 +89,12 @@ namespace LinearAlgebra
             } 
 		}
 
-		public double LengthVector(MathVector vector)
-        {
-			if (this.Dimensions != vector.Dimensions)
-			{
-				throw new Exception("different lengths");
-			}
-			double length = 0;
-			for (int i = 0; i < Dimensions; i++)
-			{
-				length += Math.Pow(points[i] - vector[i], 2);
-			}
-			return Math.Sqrt(length);
-		}
-
 		/// <summary>
 		/// Покомпонентное сложение с числом.
 		/// </summary>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">пустой вектор</exception>
 		public IMathVector SumNumber(double number)
         {
 			if (this.Dimensions == 0)
@@ -126,6 +114,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">пустой вектор</exception>
 		public IMathVector MultiplyNumber(double number)
         {
 			if (this.Dimensions == 0)
@@ -145,6 +134,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public IMathVector Sum(IMathVector vector)
         {
 			if (this.Dimensions != vector.Dimensions)
@@ -164,6 +154,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Новый вектор</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public IMathVector Multiply(IMathVector vector)
         {
 			if (this.Dimensions != vector.Dimensions)
@@ -183,6 +174,8 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
+		/// <exception cref="DivideByZeroException"></exception>
 		public IMathVector Divide(IMathVector vector)
 		{
 			if (this.Dimensions != vector.Dimensions)
@@ -195,7 +188,7 @@ namespace LinearAlgebra
 				newPoints[i] = points[i] / vector[i];
 				if (vector[i] == 0)
 				{
-					throw new Exception("divide By Zero");
+					throw new DivideByZeroException("DivideByZeroException");
 				}
 			}
 			return new MathVector(newPoints);
@@ -206,6 +199,8 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="DivideByZeroException"></exception>
+		/// <exception cref="Exception">пустой вектор</exception>
 		public IMathVector DivideNumber(double number)
 		{
 			var newPoints = new double[Dimensions];
@@ -219,7 +214,7 @@ namespace LinearAlgebra
 			}
 			if (number == 0)
 			{
-				throw new Exception("divide By Zero");
+				throw new DivideByZeroException("DivideByZeroException");
 			}
 			return new MathVector(newPoints);
 		}
@@ -229,6 +224,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public double ScalarMultiply(IMathVector vector)
         {
 			if (this.Dimensions != vector.Dimensions)
@@ -248,6 +244,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Расстояние</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public double CalcDistance(IMathVector vector)
         {
 			if (this.Dimensions != vector.Dimensions)
@@ -277,6 +274,7 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Empty vector"></exception>
 		public static IMathVector operator +(MathVector vector, double number)
         {
 			return vector.SumNumber(number);
@@ -288,6 +286,7 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="vectorTwo">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public static IMathVector operator +(MathVector vector, MathVector vectorTwo)
 		{
 			return vector.Sum(vectorTwo);
@@ -299,17 +298,19 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">пустой вектор</exception>
 		public static IMathVector operator -(MathVector vector, double number)
 		{
 			return vector.SumNumber(-number);
 		}
 
 		/// <summary>
-		/// Перегрузка опретаора - для векторов
+		/// Перегрузка оператора - для векторов
 		/// </summary>
 		/// <param name="vector"></param>
 		/// <param name="vectorTwo"></param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public static IMathVector operator -(MathVector vector, MathVector vectorTwo)
 		{
 			return vector.Sum(vectorTwo.MultiplyNumber(-1));
@@ -321,6 +322,7 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">пустой вектор</exception>
 		public static IMathVector operator *(MathVector vector, double number)
 		{
 			return vector.MultiplyNumber(number);
@@ -332,6 +334,7 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="vectorTwo">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">разные длины</exception>
 		public static IMathVector operator *(MathVector vector, MathVector vectorTwo)
 		{
 			return vector.Multiply(vectorTwo);
@@ -343,6 +346,8 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="Exception">пустой вектор</exception>
+		/// <exception cref="DivideByZeroException"></exception>
 		public static IMathVector operator /(MathVector vector, double number)
 		{
 			return vector.DivideNumber(number);
@@ -354,6 +359,8 @@ namespace LinearAlgebra
 		/// <param name="vector">Вектор</param>
 		/// <param name="vectorTwo">Вектор</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="DivideByZeroException"></exception>
+		/// <exception cref="Exception">разные длины</exception>
 		public static IMathVector operator /(MathVector vector, MathVector vectorTwo)
 		{
 			return vector.Divide(vectorTwo);
@@ -425,9 +432,9 @@ namespace LinearAlgebra
         }
 
 		/// <summary>
-		/// Перегрузка вывода
+		/// Привидение к строке
 		/// </summary>
-		/// <returns>Вектор</returns>
+		/// <returns>Строка вектора</returns>
 		public override string ToString()
 		{
 			string res = "";

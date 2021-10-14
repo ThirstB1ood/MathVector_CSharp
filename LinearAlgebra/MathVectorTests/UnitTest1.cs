@@ -18,7 +18,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestIndex_1()
+        public void TestIndex()
         {
             var vector = new MathVector(new double[] { 1, 0, 3, 5 });
 
@@ -30,7 +30,45 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestIndex_2()
+        public void TestIndexSet()
+        {
+            var vector = new MathVector(new double[] { 1, 0, 3, 5 });
+
+            vector[1] = 5;
+            var expected = new MathVector(new double[] { 1, 5, 3, 5 });
+
+
+            Assert.IsTrue(expected == vector);
+        }
+
+        [TestMethod]
+        public void TestIndexSetException()
+        {
+            var vector = new MathVector(new double[] { 1, 0, 3, 5 });
+
+            int i = -1;
+            var expected = new MathVector(new double[] { 1, 5, 3, 5 });
+
+
+            Assert.IsTrue(expected == vector);
+            Assert.ThrowsException<System.Exception>(() => vector[i] = 6);
+        }
+
+        [TestMethod]
+        public void TestIndexSetExceptionPlus()
+        {
+            var vector = new MathVector(new double[] { 1, 0, 3, 5 });
+
+            int i = 100;
+            var expected = new MathVector(new double[] { 1, 5, 3, 5 });
+
+
+            Assert.IsTrue(expected == vector);
+            Assert.ThrowsException<System.Exception>(() => vector[i] = 6);
+        }
+
+        [TestMethod]
+        public void TestIndexExceptionMinus()
         {
             var vector = new MathVector(new double[] { 1, 0, 3, 5 });
 
@@ -39,8 +77,19 @@ namespace MathVectorTests
             Assert.ThrowsException<System.Exception>(()=> vector[i]);
         }
 
+
         [TestMethod]
-        public void TestLength_1()
+        public void TestIndexMinusExceptionPlus()
+        {
+            var vector = new MathVector(new double[] { 1, 0, 3, 5 });
+
+            int i = 100;
+
+            Assert.ThrowsException<System.Exception>(() => vector[i]);
+        }
+
+        [TestMethod]
+        public void TestLengthPositive()
         {
             var vector = new MathVector(new double[] { 1, 0, 3, 5 });
 
@@ -51,7 +100,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestLength_2()
+        public void TestLengthNegative()
         {
             var vector = new MathVector(new double[] { -5 });
 
@@ -62,7 +111,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestSumNumber_1()
+        public void TestSumNumberPlus()
         {
             var vector = new MathVector(new double[] { 1, 0, 3, 5 });
             var expected = new MathVector(new double[] { 4, 3, 6, 8 });
@@ -84,7 +133,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestSumNumber_2()
+        public void TestSumNumberMinus()
         {
             var vector = new MathVector(new double[] { 1, 4 });
             var expected = new MathVector(new double[] { -2, 1 });
@@ -95,7 +144,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestMultiplyNumber_1()
+        public void TestMultiplyNumberNegative()
         {
             var vector = new MathVector(new double[] { 1, 4 });
             var expected = new MathVector(new double[] { -1, -4 });
@@ -106,7 +155,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestMultiplyNumber_2()
+        public void TestMultiplyNumberNull()
         {
             var vector = new MathVector(new double[] { 1, 4 });
             var expected = new MathVector(new double[] { 0, 0 });
@@ -117,7 +166,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestMultiplyNumber_3()
+        public void TestMultiplyNumberPosotive()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var expected = new MathVector(new double[] { 3, 12, 6 });
@@ -139,7 +188,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestSum_1()
+        public void TestSum()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var vect2 = new MathVector(new double[] { 2, 3, 5 });
@@ -152,7 +201,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestSum_2()
+        public void TestSumException()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var vect2 = new MathVector(new double[] { 2, 3 });
@@ -161,7 +210,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestMultiply_1()
+        public void TestMultiply()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var vect2 = new MathVector(new double[] { 2, 3, 5 });
@@ -174,7 +223,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestMultiply_2()
+        public void TestMultiplyException()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var vect2 = new MathVector(new double[] { 2, 3 });
@@ -196,7 +245,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestDivide_1()
+        public void TestDivide()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2, 1 });
@@ -210,7 +259,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestDivide_2()
+        public void TestDivideException()
         {
             var vector = new MathVector(new double[] { 1, 4, 2 });
             var vect2 = new MathVector(new double[] { 2, 3 });
@@ -219,7 +268,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestDivide_3()
+        public void TestDivideByZeroExceprion()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2, 0 });
@@ -240,7 +289,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestDivideNumberZero()
+        public void TestDivideNumberZeroExceprion()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
 
@@ -248,7 +297,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestScalar_1()
+        public void TestScalar()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2, 0 });
@@ -261,7 +310,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestScalar_2()
+        public void TestScalarDiffLengthException()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2 });
@@ -270,7 +319,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestCalcDistance_1()
+        public void TestCalcDistanceDiffLengthException()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2 });
@@ -279,7 +328,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestCalcDistance_2()
+        public void TestCalcDistance()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2, 4 });
@@ -317,7 +366,7 @@ namespace MathVectorTests
         }
 
         [TestMethod]
-        public void TestOperatorPLusVectorEx()
+        public void TestOperatorPLusVectorException()
         {
             var vector = new MathVector(new double[] { 6, 4, 2 });
             var vect2 = new MathVector(new double[] { 3, 2 });
@@ -380,7 +429,7 @@ namespace MathVectorTests
         {
             var vector = new MathVector(new double[] { 9, 0, 3, 12 });
 
-            var expected = new MathVector(new double[] { 3, 0, 9, 15 });
+            var expected = new MathVector(new double[] { 3, 0, 1, 4 });
 
             var result = (MathVector)(vector / 3);
 

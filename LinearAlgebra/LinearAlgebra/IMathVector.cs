@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LinearAlgebra
 {
+	/// <summary>
+	/// Интерфейс вектора
+	/// </summary>
 	public interface IMathVector : IEnumerable
 	{
 		/// <summary>
@@ -16,6 +19,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="i">Индекс</param>
 		/// <returns>Элемент по индексу</returns>
+		/// <exception cref="outside vector"></exception>
 		double this[int i] { get; set; }
 
 		/// <summary>
@@ -28,6 +32,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="empty vector"></exception>
 		IMathVector SumNumber(double number);
 
 		/// <summary>
@@ -35,6 +40,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="number">Число</param>
 		/// <returns>Новый массив</returns>
+		/// <exception cref="empty vector"></exception>
 		IMathVector MultiplyNumber(double number);
 
 		/// <summary>
@@ -56,6 +62,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Скаляр</returns>
+		/// <exception cref="different lengths"></exception>
 		double ScalarMultiply(IMathVector vector);
 
 		/// <summary>
@@ -63,6 +70,7 @@ namespace LinearAlgebra
 		/// </summary>
 		/// <param name="vector">Вектор</param>
 		/// <returns>Расстояние</returns>
+		/// <exception cref="different lengths"></exception>
 		double CalcDistance(IMathVector vector);
 	}
 }

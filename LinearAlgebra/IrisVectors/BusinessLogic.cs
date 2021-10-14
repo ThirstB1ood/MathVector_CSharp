@@ -30,7 +30,7 @@ namespace ChartsVisualisation
                 throw new FileNotFoundException();
 
             arrayStrings = File.ReadAllLines(fileName);
-                irises.DivideIrises(arrayStrings);
+            irises.DivideIrises(arrayStrings);
         }
 
         public MathVector GetAverageVector(string name)
@@ -45,20 +45,10 @@ namespace ChartsVisualisation
                     vector = new MathVector(irises.averageVersicolor);
                     break;
                 case "Virginica":
-                    vector = new MathVector(irises.averageSetosa);
+                    vector = new MathVector(irises.averageVirginica);
                     break;
             }
             return vector;
-        }
-
-        public MathVector paint1()
-        {
-            return irises.averageVersicolor;
-        }
-
-        public MathVector paint2()
-        {
-            return irises.averageVirginica;
         }
 
         public double length(string name)
@@ -67,13 +57,13 @@ namespace ChartsVisualisation
             switch (name) 
             {
                 case "Setosa and Versicolor":
-                    length = irises.averageSetosa.LengthVector(irises.averageVersicolor);
+                    length = irises.averageSetosa.CalcDistance(irises.averageVersicolor);
                     break;
                 case "Versicolor and Virginica":
-                    length = irises.averageVersicolor.LengthVector(irises.averageVirginica);
+                    length = irises.averageVersicolor.CalcDistance(irises.averageVirginica);
                     break;
                 case "Setosa and Virginica":
-                    length = irises.averageSetosa.LengthVector(irises.averageVirginica);
+                    length = irises.averageSetosa.CalcDistance(irises.averageVirginica);
                     break;
             }
             return length;

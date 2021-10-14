@@ -24,6 +24,8 @@ namespace ChartsVisualisation
 
         private void FileSelect_Click(object sender, EventArgs e)
         {
+            chart1.Series.Clear();
+            chart2.Series.Clear();
             var fileDialog = new OpenFileDialog();
             fileDialog.Filter = "CSV files (*.csv)|*.csv";
             if(fileDialog.ShowDialog() != DialogResult.Cancel)
@@ -38,22 +40,22 @@ namespace ChartsVisualisation
                 paintGraphic();
                 paintPie();
             }
-            catch (Exception)
+            catch (Exception eror)
             {
                 MessageBox.Show(
-                    "не то",
+                    eror.Message,
                     "Сообщение");
+                //chart1.Series.Clear();
+                //chart2.Series.Clear();
             }
         }
 
         private void paintPie()
         {
-            Series series = chart2.Series.Add("Re");
+            Series series = chart2.Series.Add("");
             series.Points.Add(businessLogic.length("Setosa and Versicolor"));
             series.Points.Add(businessLogic.length("Setosa and Virginica"));
             series.Points.Add(businessLogic.length("Versicolor and Virginica"));
-            Title AreaTitle = new Title("Pie diagram", Docking.Top, new Font("Verdana", 10), Color.Black);
-            chart2.Titles.Add(AreaTitle);
             series.Points[0].LegendText = "Setosa and Versicolor";
             series.Points[1].LegendText = "Setosa and Virginica";
             series.Points[2].LegendText = "Versicolor and Virginica";

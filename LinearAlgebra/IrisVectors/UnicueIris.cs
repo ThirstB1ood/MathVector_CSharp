@@ -24,10 +24,13 @@ namespace ChartsVisualisation
             {
                 foreach (string[] str in data.Skip(1))
                 {
-                    double[] temp = new double[data[0].Length];
+                    double[] temp = new double[data[0].Length - 1];
                     for (int i = 0; i < 4; i++)
                     {
-                        temp[i] = Convert.ToDouble(str[i].Replace('.', ','));
+                        if(!Double.TryParse(str[i].Replace('.', ','), out temp[i]))
+                        {
+                            throw new Exception("Wrong number");
+                        }
                     }
                     if (Array.Exists(temp, element => (temp[3] != 0)))
                     {
@@ -53,10 +56,10 @@ namespace ChartsVisualisation
         public MathVector CreateMathVectors(List<MathVector> vectorsIrises)
         {
             double[] temp = new double[vectorsIrises[0].Dimensions];
-            double res = 0;
             for(int i = 0; i < vectorsIrises[0].Dimensions; i++)
             {
-                for(int j = 0; j < vectorsIrises.Count; j++)
+                double res = 0;
+                for (int j = 0; j < vectorsIrises.Count; j++)
                 {
                     res += vectorsIrises[j][i];
                 }
