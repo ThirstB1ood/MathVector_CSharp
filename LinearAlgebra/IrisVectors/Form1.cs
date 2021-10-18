@@ -24,29 +24,32 @@ namespace ChartsVisualisation
 
         private void FileSelect_Click(object sender, EventArgs e)
         {
-            chart1.Series.Clear();
-            chart2.Series.Clear();
+            
             var fileDialog = new OpenFileDialog();
             fileDialog.Filter = "CSV files (*.csv)|*.csv";
-            if(fileDialog.ShowDialog() != DialogResult.Cancel)
+            if (fileDialog.ShowDialog() != DialogResult.Cancel)
             {
-                //businessLogic._fileName = "C:\\Users\\vdv30\\Downloads\\iris.csv";
-                businessLogic._fileName = fileDialog.FileName;
-              FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
-            }
-            try
-            {
-                businessLogic.ReadFile();
-                paintGraphic();
-                paintPie();
-            }
-            catch (Exception eror)
-            {
-                MessageBox.Show(
-                    eror.Message,
-                    "Сообщение");
-                //chart1.Series.Clear();
-                //chart2.Series.Clear();
+                // businessLogic._fileName = "C:\\Users\\vdv30\\Downloads\\iris.csv";
+                System.IO.FileInfo fi = new System.IO.FileInfo(fileDialog.FileName);
+                if (fi.Extension == ".csv") // Проверка на CSV расширение
+                {
+                    businessLogic._fileName = fileDialog.FileName;
+                    FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
+                    try
+                    {
+                        businessLogic.ReadFile();
+                        chart1.Series.Clear();
+                        chart2.Series.Clear();
+                        paintGraphic();
+                        paintPie();
+                    }
+                    catch (Exception exeption)
+                    {
+                        MessageBox.Show(
+                            exeption.Message,
+                            "Ошибка чтения файла");
+                    }
+                }
             }
         }
 
