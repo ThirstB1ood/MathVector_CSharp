@@ -1,7 +1,7 @@
 ﻿
 namespace ChartsVisualisation
 {
-    partial class Form1
+    partial class Irises
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -92,7 +92,7 @@ namespace ChartsVisualisation
             this.chart2.TabIndex = 3;
             this.chart2.Text = "chart2";
             // 
-            // Form1
+            // Irises
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,8 +101,10 @@ namespace ChartsVisualisation
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.FileSelect);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "Irises";
+            this.Text = "Irises Visualization";
+            this.Load += new System.EventHandler(this.Irises_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);

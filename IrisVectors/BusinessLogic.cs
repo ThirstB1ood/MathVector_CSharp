@@ -29,6 +29,7 @@ namespace ChartsVisualisation
             if (fileName == "")
                 throw new FileNotFoundException();
 
+            irises.clear();
             arrayStrings = File.ReadAllLines(fileName);
             irises.DivideIrises(arrayStrings);
         }

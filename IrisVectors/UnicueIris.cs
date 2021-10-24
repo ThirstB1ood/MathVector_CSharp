@@ -84,5 +84,12 @@ namespace ChartsVisualisation
                 return false;
             }
         }
+
+        public void clear()
+        {
+            irisesSetosa.Clear();
+            irisesVersicolor.Clear();   
+            irisesVirginica.Clear();
+        }
     }
 }
