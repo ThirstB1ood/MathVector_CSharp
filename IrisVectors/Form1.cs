@@ -28,9 +28,17 @@ namespace ChartsVisualisation
             fileDialog.Filter = "CSV files (*.csv)|*.csv";
             if (fileDialog.ShowDialog() != DialogResult.Cancel && System.IO.File.Exists(fileDialog.FileName))
             {
-                // businessLogic._fileName = "C:\\Users\\vdv30\\Downloads\\iris.csv";
+                //businessLogic._fileName = "C:\\Users\\vdv30\\Downloads\\iris.csv";
                 System.IO.FileInfo fi = new System.IO.FileInfo(fileDialog.FileName);
-                if(fi.Length < 10000)
+                if(fi.Length == 0)
+                {
+                    clearCharts();
+                    errors.Text = "Empty file";
+                    //MessageBox.Show(
+                    //  "Empty file",
+                    //"Error");
+                }
+                else if(fi.Length < 10000)
                 {
                     businessLogic._fileName = fileDialog.FileName;
                     FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
@@ -38,16 +46,16 @@ namespace ChartsVisualisation
                     {
                         businessLogic.ReadFile();
                         clearCharts();
-                        Thread.Sleep(1000);
                         paintGraphic();
                         paintPie();
                     }
                     catch (Exception exeption)
                     {
                         clearCharts();
-                        MessageBox.Show(
-                            exeption.Message,
-                            "Ошибка чтения файла");
+                        errors.Text = exeption.Message;
+                        //MessageBox.Show(
+                        //  exeption.Message,
+                        //"Error read file");
                     }
                 }
                 else
@@ -55,16 +63,17 @@ namespace ChartsVisualisation
                     clearCharts();
                     Irises_Load(sender, e);
                 }
-            } 
+            }
             else
             {
                 clearCharts();
-                MessageBox.Show(
-                    "Файл не выбран", 
-                    "Ошибка чтения файла");
+                errors.Text = "No file selected";
+                // MessageBox.Show(
+                 //   "No file selected", 
+                   // "Error read file");
             }
         }
-
+        
         private void paintPie()
         {
             Series series = chart2.Series.Add("");
@@ -127,10 +136,10 @@ namespace ChartsVisualisation
 
         private void Irises_Load(object sender, EventArgs e)
         {
-            Thread.Sleep(1000);
-            MessageBox.Show(
-    "Это приложение принимает на вход только csv-файлы меньше 10 Кб",
-    "Добрый день");
+            errors.Text = "Это приложение принимает на вход только csv-файлы меньше 10 Кб";
+            //MessageBox.Show(
+              //  "Это приложение принимает на вход только csv-файлы меньше 10 Кб",
+                //"Добрый день");
         }
     }
 }

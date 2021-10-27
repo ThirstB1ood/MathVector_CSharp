@@ -66,6 +66,8 @@ namespace ChartsVisualisation
                 case "Setosa and Virginica":
                     length = irises.averageSetosa.CalcDistance(irises.averageVirginica);
                     break;
+                default:
+                    throw new Exception("Not Irises");
             }
             return length;
         }
