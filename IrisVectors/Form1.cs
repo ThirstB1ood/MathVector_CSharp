@@ -16,7 +16,8 @@ namespace Iris
         }
 
         private void FileSelect_Click(object sender, EventArgs e)
-        { 
+        {
+            ClearCharts();
             var fileDialog = new OpenFileDialog();
             fileDialog.Filter = "CSV files (*.csv)|*.csv";
             if (fileDialog.ShowDialog() != DialogResult.Cancel && System.IO.File.Exists(fileDialog.FileName))
@@ -24,7 +25,6 @@ namespace Iris
                 System.IO.FileInfo fi = new System.IO.FileInfo(fileDialog.FileName);
                 if(fi.Length == 0)
                 {
-                    ClearCharts();
                     errors.Text = "Empty file";
                 }
                 else if(fi.Length < 1024 * maxFileSize)
@@ -34,25 +34,21 @@ namespace Iris
                     try
                     {
                         businessLogic.ReadFile();
-                        ClearCharts();
                         DrawGraphic();
                         DrawPie();
                     }
                     catch (Exception exeption)
                     {
-                        ClearCharts();
                         errors.Text = exeption.Message;
                     }
                 }
                 else
                 {
-                    ClearCharts();
                     Irises_Load(sender, e);
                 }
             }
             else
             {
-                ClearCharts();
                 errors.Text = "No file selected";
             }
         }
@@ -60,15 +56,15 @@ namespace Iris
         private void DrawPie()
         {
             Series series = chart2.Series.Add("");
-            series.Points.Add(businessLogic.length("Setosa and Versicolor"));
-            series.Points.Add(businessLogic.length("Setosa and Virginica"));
-            series.Points.Add(businessLogic.length("Versicolor and Virginica"));
+            series.Points.Add(businessLogic.Distance("Setosa and Versicolor"));
+            series.Points.Add(businessLogic.Distance("Setosa and Virginica"));
+            series.Points.Add(businessLogic.Distance("Versicolor and Virginica"));
             series.Points[0].LegendText = "Setosa and Versicolor";
             series.Points[1].LegendText = "Setosa and Virginica";
             series.Points[2].LegendText = "Versicolor and Virginica";
-            series.Points[0].Label = (Math.Round(businessLogic.length("Setosa and Versicolor"), 2)).ToString();
-            series.Points[1].Label = (Math.Round(businessLogic.length("Setosa and Virginica"), 2)).ToString();
-            series.Points[2].Label = (Math.Round(businessLogic.length("Versicolor and Virginica"), 2)).ToString();
+            series.Points[0].Label = (Math.Round(businessLogic.Distance("Setosa and Versicolor"), 2)).ToString();
+            series.Points[1].Label = (Math.Round(businessLogic.Distance("Setosa and Virginica"), 2)).ToString();
+            series.Points[2].Label = (Math.Round(businessLogic.Distance("Versicolor and Virginica"), 2)).ToString();
             series.ChartType = SeriesChartType.Pie;
         }
 

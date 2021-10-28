@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Iris
 {
-    class BusinessLogic
+    class BusinessLogic : IBusinessLogic
     {
         private string fileName;
         private string[] arrayStrings;
@@ -45,7 +45,7 @@ namespace Iris
             return vector;
         }
 
-        public double length(string name)
+        public double Distance(string name)
         {
             double length = 0;
             switch (name) 
