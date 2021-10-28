@@ -6,13 +6,13 @@ namespace Iris
 {
     public partial class Irises : Form
     {
-        BusinessLogic logic;
-        private int maxFileSize = 100; // В килобайтах
+        IrisController logic;
+        private int maxFileSizeKb = 10; // В килобайтах
         public Irises()
         {
             InitializeComponent();
             ClearCharts();
-            logic = new BusinessLogic();
+            logic = new IrisController();
         }
 
         private void FileSelect_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace Iris
                     MessageField.Text = "Empty file";
                     FileName.Text = "";
                 }
-                else if(fi.Length < 1024 * maxFileSize)
+                else if(fi.Length < 1024 * maxFileSizeKb)
                 {
                     logic._fileName = fileDialog.FileName;
                     FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
@@ -115,7 +115,7 @@ namespace Iris
 
         private void Irises_Load(object sender, EventArgs e)
         {
-            MessageField.Text = $"Max CSV file: {maxFileSize}Kb";
+            MessageField.Text = $"Max CSV file: {maxFileSizeKb}Kb";
         }
     }
 }
