@@ -1,24 +1,22 @@
-﻿using System;
+﻿using LinearAlgebra;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LinearAlgebra;
 
-namespace ChartsVisualisation
+namespace Iris
 {
-    class SetOfIris
+    class IrisData
     {
         public MathVector avgSetosa;
         public MathVector avgVersicolor;
         public MathVector avgVirginica;
 
-        public void GetData(string[] fileStr)
+        public void SetAvgIris(string[] fileStr)
         {
-            
-            avgSetosa = CreateMathVectors(irisesSetosa);
-            avgVersicolor = CreateMathVectors(irisesVersicolor);
-            avgVirginica = CreateMathVectors(irisesVirginica);
+            FileReader reader = new FileReader();
+            Dictionary<string, List<MathVector>> irises = reader.GetIrises(fileStr);
+            avgSetosa = CreateMathVectors(irises["Setosa"]);
+            avgVersicolor = CreateMathVectors(irises["Versicolor"]);
+            avgVirginica = CreateMathVectors(irises["Virginica"]);
         }
 
         public MathVector CreateMathVectors(List<MathVector> vectorsIrises)

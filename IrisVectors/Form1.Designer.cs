@@ -1,5 +1,5 @@
 ﻿
-namespace ChartsVisualisation
+namespace Iris
 {
     partial class Irises
     {
@@ -47,14 +47,16 @@ namespace ChartsVisualisation
             // 
             // FileSelect
             // 
+            this.FileSelect.BackColor = System.Drawing.SystemColors.ControlDark;
             this.FileSelect.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.FileSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FileSelect.Location = new System.Drawing.Point(851, 21);
             this.FileSelect.Margin = new System.Windows.Forms.Padding(2);
             this.FileSelect.Name = "FileSelect";
             this.FileSelect.Size = new System.Drawing.Size(96, 85);
             this.FileSelect.TabIndex = 0;
             this.FileSelect.Text = "Load CSV";
-            this.FileSelect.UseVisualStyleBackColor = true;
+            this.FileSelect.UseVisualStyleBackColor = false;
             this.FileSelect.Click += new System.EventHandler(this.FileSelect_Click);
             // 
             // FileName
@@ -119,6 +121,7 @@ namespace ChartsVisualisation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(958, 803);
             this.Controls.Add(this.errors);
             this.Controls.Add(this.chart2);

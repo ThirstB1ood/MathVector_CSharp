@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LinearAlgebra;
+using System;
 using System.IO;
-using LinearAlgebra;
 
-namespace ChartsVisualisation
+namespace Iris
 {
     class BusinessLogic
     {
         private string fileName;
         private string[] arrayStrings;
-        private SetOfIris irises = new SetOfIris();
+        private IrisData irises = new IrisData();
         public string _fileName
         {
             set => fileName = value;
@@ -29,25 +25,22 @@ namespace ChartsVisualisation
             if (fileName == "")
                 throw new FileNotFoundException();
 
-            irises.СlearData();
             arrayStrings = File.ReadAllLines(fileName);
-            irises.GetData(arrayStrings);
+            irises.SetAvgIris(arrayStrings);
         }
 
         public MathVector GetAverageVector(string name)
         {
             MathVector vector = new MathVector(new double[] { 0 });
-            switch (name)
+            if (name == "Setosa")
             {
-                case "Setosa":
-                    vector = new MathVector(irises.avgSetosa);
-                    break;
-                case "Versicolor":
-                    vector = new MathVector(irises.avgVersicolor);
-                    break;
-                case "Virginica":
-                    vector = new MathVector(irises.avgVirginica);
-                    break;
+                vector = new MathVector(irises.avgSetosa);
+            }  else if (name == "Versicolor")
+            {
+                vector = new MathVector(irises.avgVersicolor);
+            } else if (name == "Virginica")
+            {
+                vector = new MathVector(irises.avgVirginica);
             }
             return vector;
         }

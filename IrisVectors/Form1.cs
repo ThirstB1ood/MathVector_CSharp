@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Threading;
 
-namespace ChartsVisualisation
+namespace Iris
 {
     public partial class Irises : Form
     {
         BusinessLogic businessLogic;
+        private int maxFileSize = 100; // В килобайтах
         public Irises()
         {
             InitializeComponent();
             businessLogic = new BusinessLogic();
-            clearCharts();
+            ClearCharts();
         }
 
         private void FileSelect_Click(object sender, EventArgs e)
@@ -28,53 +21,43 @@ namespace ChartsVisualisation
             fileDialog.Filter = "CSV files (*.csv)|*.csv";
             if (fileDialog.ShowDialog() != DialogResult.Cancel && System.IO.File.Exists(fileDialog.FileName))
             {
-                //businessLogic._fileName = "C:\\Users\\vdv30\\Downloads\\iris.csv";
                 System.IO.FileInfo fi = new System.IO.FileInfo(fileDialog.FileName);
                 if(fi.Length == 0)
                 {
-                    clearCharts();
+                    ClearCharts();
                     errors.Text = "Empty file";
-                    //MessageBox.Show(
-                    //  "Empty file",
-                    //"Error");
                 }
-                else if(fi.Length < 10000)
+                else if(fi.Length < 1024 * maxFileSize)
                 {
                     businessLogic._fileName = fileDialog.FileName;
                     FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
                     try
                     {
                         businessLogic.ReadFile();
-                        clearCharts();
-                        paintGraphic();
-                        paintPie();
+                        ClearCharts();
+                        DrawGraphic();
+                        DrawPie();
                     }
                     catch (Exception exeption)
                     {
-                        clearCharts();
+                        ClearCharts();
                         errors.Text = exeption.Message;
-                        //MessageBox.Show(
-                        //  exeption.Message,
-                        //"Error read file");
                     }
                 }
                 else
                 {
-                    clearCharts();
+                    ClearCharts();
                     Irises_Load(sender, e);
                 }
             }
             else
             {
-                clearCharts();
+                ClearCharts();
                 errors.Text = "No file selected";
-                // MessageBox.Show(
-                 //   "No file selected", 
-                   // "Error read file");
             }
         }
         
-        private void paintPie()
+        private void DrawPie()
         {
             Series series = chart2.Series.Add("");
             series.Points.Add(businessLogic.length("Setosa and Versicolor"));
@@ -89,46 +72,45 @@ namespace ChartsVisualisation
             series.ChartType = SeriesChartType.Pie;
         }
 
-        private void paintGraphic()
+        private void DrawGraphic()
         {
-            Series series = this.chart1.Series.Add("Setosa");
+            Series seriesSetosa = this.chart1.Series.Add("Setosa");
             for(int i = 0; i < businessLogic.GetAverageVector("Setosa").Dimensions; i++)
             {
-                series.Points.Add(businessLogic.GetAverageVector("Setosa")[i]);
+                seriesSetosa.Points.Add(businessLogic.GetAverageVector("Setosa")[i]);
             }
 
-            Series series1 = this.chart1.Series.Add("Versicolor");
+            Series seriesVersicolor = this.chart1.Series.Add("Versicolor");
             for (int i = 0; i < businessLogic.GetAverageVector("Versicolor").Dimensions; i++)
             {
-                series1.Points.Add(businessLogic.GetAverageVector("Versicolor")[i]);
+                seriesVersicolor.Points.Add(businessLogic.GetAverageVector("Versicolor")[i]);
             }
 
-            Series series2 = this.chart1.Series.Add("Virginica");
+            Series seriesVirginica = this.chart1.Series.Add("Virginica");
             for (int i = 0; i < businessLogic.GetAverageVector("Virginica").Dimensions; i++)
             {
-                series2.Points.Add(businessLogic.GetAverageVector("Virginica")[i]);
-                series2.Points[0].AxisLabel = "asfgd";
+                seriesVirginica.Points.Add(businessLogic.GetAverageVector("Virginica")[i]);
             }
-            series.Points[0].AxisLabel = "sepal\nlength";
-            series.Points[1].AxisLabel = "sepal\nwidth";
-            series.Points[2].AxisLabel = "petal\nlength";
-            series.Points[3].AxisLabel = "petal\nwidth";
-            series.IsValueShownAsLabel = true;
-            series.SmartLabelStyle.Enabled = false;
-            series1.IsValueShownAsLabel = true;
-            series1.SmartLabelStyle.Enabled = false;
-            series2.IsValueShownAsLabel = true;
-            series2.SmartLabelStyle.Enabled = false;
+            seriesSetosa.Points[0].AxisLabel = "sepal\nlength";
+            seriesSetosa.Points[1].AxisLabel = "sepal\nwidth";
+            seriesSetosa.Points[2].AxisLabel = "petal\nlength";
+            seriesSetosa.Points[3].AxisLabel = "petal\nwidth";
+            seriesSetosa.IsValueShownAsLabel = true;
+            seriesVersicolor.IsValueShownAsLabel = true;
+            seriesVirginica.IsValueShownAsLabel = true;
+            seriesSetosa.SmartLabelStyle.Enabled = false;
+            seriesVersicolor.SmartLabelStyle.Enabled = false;
+            seriesVirginica.SmartLabelStyle.Enabled = false;
 
             Axis ax = new Axis();
-            ax.Title = "Характеристики";
+            ax.Title = "Specification";
             chart1.ChartAreas[0].AxisX = ax;
             Axis ay = new Axis();
-            ay.Title = "Значения";
+            ay.Title = "Value";
             chart1.ChartAreas[0].AxisY = ay;
         }
 
-        private void clearCharts()
+        private void ClearCharts()
         {
             chart1.Series.Clear();
             chart2.Series.Clear();
@@ -136,10 +118,7 @@ namespace ChartsVisualisation
 
         private void Irises_Load(object sender, EventArgs e)
         {
-            errors.Text = "Это приложение принимает на вход только csv-файлы меньше 10 Кб";
-            //MessageBox.Show(
-              //  "Это приложение принимает на вход только csv-файлы меньше 10 Кб",
-                //"Добрый день");
+            errors.Text = $"Max CSV file: {maxFileSize}Kb";
         }
     }
 }

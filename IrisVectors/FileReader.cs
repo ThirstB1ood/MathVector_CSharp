@@ -1,14 +1,12 @@
-﻿using System;
+﻿using LinearAlgebra;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LinearAlgebra;
 
 
-namespace IrisVectors
+namespace Iris
 {
-    class FileReader
+    public class FileReader
     {
         private List<MathVector> irisesSetosa = new List<MathVector>();
         private List<MathVector> irisesVersicolor = new List<MathVector>();
@@ -33,7 +31,7 @@ namespace IrisVectors
             }
         }
 
-        public Dictionary<string, List<MathVector>> GetData(string[] fileStr)
+        public Dictionary<string, List<MathVector>> GetIrises(string[] fileStr)
         {
             string[][] data;
             data = fileStr.Select(x => x.Split(',')).ToArray();
