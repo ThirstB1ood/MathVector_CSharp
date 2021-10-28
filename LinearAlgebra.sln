@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearAlgebra", "LinearAlgebra\LinearAlgebra.csproj", "{45A6157C-1890-456F-AF23-CFBDA2B960B5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorDemo", "VectorDemo\VectorDemo.csproj", "{C8C3F965-7388-4FC9-BF1B-5E861DFFDAF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp-LinearAlgebra", "LinearAlgebra\CSharp-LinearAlgebra.csproj", "{45A6157C-1890-456F-AF23-CFBDA2B960B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathVectorTests", "MathVectorTests\MathVectorTests.csproj", "{9444056A-3E21-4FE6-8513-DC06D127F111}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartsVisualisation", "IrisVectors\ChartsVisualisation.csproj", "{F385E1C0-4088-411F-AFA3-A557E22150E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iris", "IrisVectors\Iris.csproj", "{F385E1C0-4088-411F-AFA3-A557E22150E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{45A6157C-1890-456F-AF23-CFBDA2B960B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A6157C-1890-456F-AF23-CFBDA2B960B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45A6157C-1890-456F-AF23-CFBDA2B960B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8C3F965-7388-4FC9-BF1B-5E861DFFDAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8C3F965-7388-4FC9-BF1B-5E861DFFDAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8C3F965-7388-4FC9-BF1B-5E861DFFDAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8C3F965-7388-4FC9-BF1B-5E861DFFDAF3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9444056A-3E21-4FE6-8513-DC06D127F111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9444056A-3E21-4FE6-8513-DC06D127F111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9444056A-3E21-4FE6-8513-DC06D127F111}.Release|Any CPU.ActiveCfg = Release|Any CPU

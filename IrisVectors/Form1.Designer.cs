@@ -29,12 +29,13 @@ namespace ChartsVisualisation
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Irises));
             this.FileSelect = new System.Windows.Forms.Button();
             this.FileName = new System.Windows.Forms.TextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -46,77 +47,89 @@ namespace ChartsVisualisation
             // 
             // FileSelect
             // 
-            this.FileSelect.Location = new System.Drawing.Point(7, 40);
+            this.FileSelect.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.FileSelect.Location = new System.Drawing.Point(851, 21);
+            this.FileSelect.Margin = new System.Windows.Forms.Padding(2);
             this.FileSelect.Name = "FileSelect";
-            this.FileSelect.Size = new System.Drawing.Size(105, 34);
+            this.FileSelect.Size = new System.Drawing.Size(96, 85);
             this.FileSelect.TabIndex = 0;
-            this.FileSelect.Text = "SelectFile";
+            this.FileSelect.Text = "Load CSV";
             this.FileSelect.UseVisualStyleBackColor = true;
             this.FileSelect.Click += new System.EventHandler(this.FileSelect_Click);
             // 
             // FileName
             // 
-            this.FileName.Location = new System.Drawing.Point(12, 12);
+            this.FileName.Location = new System.Drawing.Point(568, 110);
+            this.FileName.Margin = new System.Windows.Forms.Padding(2);
             this.FileName.Name = "FileName";
             this.FileName.ReadOnly = true;
-            this.FileName.Size = new System.Drawing.Size(100, 22);
+            this.FileName.Size = new System.Drawing.Size(379, 20);
             this.FileName.TabIndex = 1;
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(7, 80);
+            this.chart1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(5, 121);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart1.Series.Add(series5);
-            this.chart1.Size = new System.Drawing.Size(603, 583);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(529, 552);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart2.Legends.Add(legend6);
-            this.chart2.Location = new System.Drawing.Point(616, 80);
+            this.chart2.BackColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
+            this.chart2.Location = new System.Drawing.Point(558, 142);
+            this.chart2.Margin = new System.Windows.Forms.Padding(2);
             this.chart2.Name = "chart2";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart2.Series.Add(series6);
-            this.chart2.Size = new System.Drawing.Size(672, 904);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
+            this.chart2.Size = new System.Drawing.Size(389, 531);
             this.chart2.TabIndex = 3;
             this.chart2.Text = "chart2";
             // 
             // errors
             // 
             this.errors.AutoSize = true;
-            this.errors.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.errors.Location = new System.Drawing.Point(396, 15);
+            this.errors.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.errors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.errors.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.errors.Location = new System.Drawing.Point(11, 21);
+            this.errors.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errors.Name = "errors";
-            this.errors.Size = new System.Drawing.Size(69, 24);
+            this.errors.Size = new System.Drawing.Size(202, 28);
             this.errors.TabIndex = 4;
-            this.errors.Text = "Вывод";
+            this.errors.Text = "Блок информации";
             // 
             // Irises
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 988);
+            this.ClientSize = new System.Drawing.Size(958, 803);
             this.Controls.Add(this.errors);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.FileName);
             this.Controls.Add(this.FileSelect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Irises";
-            this.Text = "Irises Visualization";
+            this.Text = "KriptYashka - Irises";
             this.Load += new System.EventHandler(this.Irises_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();

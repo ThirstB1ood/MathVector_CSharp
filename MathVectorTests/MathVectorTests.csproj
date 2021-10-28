@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LinearAlgebra\LinearAlgebra.csproj">
+    <ProjectReference Include="..\LinearAlgebra\CSharp-LinearAlgebra.csproj">
       <Project>{45a6157c-1890-456f-af23-cfbda2b960b5}</Project>
-      <Name>LinearAlgebra</Name>
+      <Name>CSharp-LinearAlgebra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
