@@ -6,13 +6,13 @@ namespace Iris
 {
     public partial class Irises : Form
     {
-        BusinessLogic businessLogic;
+        BusinessLogic logic;
         private int maxFileSize = 100; // В килобайтах
         public Irises()
         {
             InitializeComponent();
-            businessLogic = new BusinessLogic();
             ClearCharts();
+            logic = new BusinessLogic();
         }
 
         private void FileSelect_Click(object sender, EventArgs e)
@@ -25,21 +25,22 @@ namespace Iris
                 System.IO.FileInfo fi = new System.IO.FileInfo(fileDialog.FileName);
                 if(fi.Length == 0)
                 {
-                    errors.Text = "Empty file";
+                    MessageField.Text = "Empty file";
+                    FileName.Text = "";
                 }
                 else if(fi.Length < 1024 * maxFileSize)
                 {
-                    businessLogic._fileName = fileDialog.FileName;
+                    logic._fileName = fileDialog.FileName;
                     FileName.Text = System.IO.Path.GetFileName(fileDialog.FileName);
                     try
                     {
-                        businessLogic.ReadFile();
+                        logic.ReadFile();
                         DrawGraphic();
                         DrawPie();
                     }
                     catch (Exception exeption)
                     {
-                        errors.Text = exeption.Message;
+                        MessageField.Text = exeption.Message;
                     }
                 }
                 else
@@ -49,43 +50,43 @@ namespace Iris
             }
             else
             {
-                errors.Text = "No file selected";
+                MessageField.Text = "No file selected";
             }
         }
         
         private void DrawPie()
         {
             Series series = chart2.Series.Add("");
-            series.Points.Add(businessLogic.Distance("Setosa and Versicolor"));
-            series.Points.Add(businessLogic.Distance("Setosa and Virginica"));
-            series.Points.Add(businessLogic.Distance("Versicolor and Virginica"));
+            series.Points.Add(logic.Distance("Setosa and Versicolor"));
+            series.Points.Add(logic.Distance("Setosa and Virginica"));
+            series.Points.Add(logic.Distance("Versicolor and Virginica"));
             series.Points[0].LegendText = "Setosa and Versicolor";
             series.Points[1].LegendText = "Setosa and Virginica";
             series.Points[2].LegendText = "Versicolor and Virginica";
-            series.Points[0].Label = (Math.Round(businessLogic.Distance("Setosa and Versicolor"), 2)).ToString();
-            series.Points[1].Label = (Math.Round(businessLogic.Distance("Setosa and Virginica"), 2)).ToString();
-            series.Points[2].Label = (Math.Round(businessLogic.Distance("Versicolor and Virginica"), 2)).ToString();
+            series.Points[0].Label = (Math.Round(logic.Distance("Setosa and Versicolor"), 2)).ToString();
+            series.Points[1].Label = (Math.Round(logic.Distance("Setosa and Virginica"), 2)).ToString();
+            series.Points[2].Label = (Math.Round(logic.Distance("Versicolor and Virginica"), 2)).ToString();
             series.ChartType = SeriesChartType.Pie;
         }
 
         private void DrawGraphic()
         {
             Series seriesSetosa = this.chart1.Series.Add("Setosa");
-            for(int i = 0; i < businessLogic.GetAverageVector("Setosa").Dimensions; i++)
+            for(int i = 0; i < logic.GetAverageVector("Setosa").Dimensions; i++)
             {
-                seriesSetosa.Points.Add(businessLogic.GetAverageVector("Setosa")[i]);
+                seriesSetosa.Points.Add(logic.GetAverageVector("Setosa")[i]);
             }
 
             Series seriesVersicolor = this.chart1.Series.Add("Versicolor");
-            for (int i = 0; i < businessLogic.GetAverageVector("Versicolor").Dimensions; i++)
+            for (int i = 0; i < logic.GetAverageVector("Versicolor").Dimensions; i++)
             {
-                seriesVersicolor.Points.Add(businessLogic.GetAverageVector("Versicolor")[i]);
+                seriesVersicolor.Points.Add(logic.GetAverageVector("Versicolor")[i]);
             }
 
             Series seriesVirginica = this.chart1.Series.Add("Virginica");
-            for (int i = 0; i < businessLogic.GetAverageVector("Virginica").Dimensions; i++)
+            for (int i = 0; i < logic.GetAverageVector("Virginica").Dimensions; i++)
             {
-                seriesVirginica.Points.Add(businessLogic.GetAverageVector("Virginica")[i]);
+                seriesVirginica.Points.Add(logic.GetAverageVector("Virginica")[i]);
             }
             seriesSetosa.Points[0].AxisLabel = "sepal\nlength";
             seriesSetosa.Points[1].AxisLabel = "sepal\nwidth";
@@ -114,7 +115,7 @@ namespace Iris
 
         private void Irises_Load(object sender, EventArgs e)
         {
-            errors.Text = $"Max CSV file: {maxFileSize}Kb";
+            MessageField.Text = $"Max CSV file: {maxFileSize}Kb";
         }
     }
 }

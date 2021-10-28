@@ -40,7 +40,7 @@ namespace Iris
             this.FileName = new System.Windows.Forms.TextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.errors = new System.Windows.Forms.Label();
+            this.MessageField = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
@@ -106,16 +106,16 @@ namespace Iris
             // 
             // errors
             // 
-            this.errors.AutoSize = true;
-            this.errors.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.errors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.errors.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.errors.Location = new System.Drawing.Point(11, 21);
-            this.errors.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.errors.Name = "errors";
-            this.errors.Size = new System.Drawing.Size(202, 28);
-            this.errors.TabIndex = 4;
-            this.errors.Text = "Блок информации";
+            this.MessageField.AutoSize = true;
+            this.MessageField.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MessageField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MessageField.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.MessageField.Location = new System.Drawing.Point(11, 21);
+            this.MessageField.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.MessageField.Name = "errors";
+            this.MessageField.Size = new System.Drawing.Size(202, 28);
+            this.MessageField.TabIndex = 4;
+            this.MessageField.Text = "Блок информации";
             // 
             // Irises
             // 
@@ -123,7 +123,7 @@ namespace Iris
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(958, 803);
-            this.Controls.Add(this.errors);
+            this.Controls.Add(this.MessageField);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.FileName);
@@ -147,7 +147,7 @@ namespace Iris
         private System.Windows.Forms.TextBox FileName;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.Label errors;
+        private System.Windows.Forms.Label MessageField;
     }
 }
 
