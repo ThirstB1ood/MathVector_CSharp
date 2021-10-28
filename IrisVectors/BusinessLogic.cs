@@ -12,7 +12,7 @@ namespace ChartsVisualisation
     {
         private string fileName;
         private string[] arrayStrings;
-        private UnicueIris irises = new UnicueIris();
+        private SetOfIris irises = new SetOfIris();
         public string _fileName
         {
             set => fileName = value;
@@ -29,9 +29,9 @@ namespace ChartsVisualisation
             if (fileName == "")
                 throw new FileNotFoundException();
 
-            irises.clear();
+            irises.СlearData();
             arrayStrings = File.ReadAllLines(fileName);
-            irises.DivideIrises(arrayStrings);
+            irises.GetData(arrayStrings);
         }
 
         public MathVector GetAverageVector(string name)
@@ -40,13 +40,13 @@ namespace ChartsVisualisation
             switch (name)
             {
                 case "Setosa":
-                    vector = new MathVector(irises.averageSetosa);
+                    vector = new MathVector(irises.avgSetosa);
                     break;
                 case "Versicolor":
-                    vector = new MathVector(irises.averageVersicolor);
+                    vector = new MathVector(irises.avgVersicolor);
                     break;
                 case "Virginica":
-                    vector = new MathVector(irises.averageVirginica);
+                    vector = new MathVector(irises.avgVirginica);
                     break;
             }
             return vector;
@@ -58,13 +58,13 @@ namespace ChartsVisualisation
             switch (name) 
             {
                 case "Setosa and Versicolor":
-                    length = irises.averageSetosa.CalcDistance(irises.averageVersicolor);
+                    length = irises.avgSetosa.CalcDistance(irises.avgVersicolor);
                     break;
                 case "Versicolor and Virginica":
-                    length = irises.averageVersicolor.CalcDistance(irises.averageVirginica);
+                    length = irises.avgVersicolor.CalcDistance(irises.avgVirginica);
                     break;
                 case "Setosa and Virginica":
-                    length = irises.averageSetosa.CalcDistance(irises.averageVirginica);
+                    length = irises.avgSetosa.CalcDistance(irises.avgVirginica);
                     break;
                 default:
                     throw new Exception("Not Irises");
