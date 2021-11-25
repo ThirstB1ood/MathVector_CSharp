@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Iris
 {
-    class IrisController : IBusinessLogic
+    class BusinessLogic : IBusinessLogic
     {
         private string fileName;
         private string[] arrayStrings;
@@ -15,7 +15,7 @@ namespace Iris
             get => fileName;
         }
 
-        public IrisController()
+        public BusinessLogic()
         {
             fileName = "";
         }
